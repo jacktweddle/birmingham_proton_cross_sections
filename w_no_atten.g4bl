@@ -1,0 +1,77 @@
+#	BirminghamSim.g4bl - 10-36 MeV proton beam into a W/Ta target
+
+# The "default" physics list is QGSP_BERT
+physics QGSP_BERT
+
+# the beam is 10-36 MeV kinetic energy, the mass of a proton is 938.272 MeV/c^2
+# Momentum calculated from SR and has units of MeV/c
+param M=938.272 KE=35.0
+param P=sqrt(($M+$KE)*($M+$KE)-$M*$M)
+
+# a zero-emittance beam is unrealistic, but simple; it easily fits through
+# a 1 mm hole in the backward detector. It emanates from z=0.
+beam gaussian meanMomentum=$P nEvents=1000000 particle=proton
+trackcuts keep=proton killSecondaries keepPrimaries
+
+# Foils
+box foil1 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil1 z=100.005
+
+box foil2 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil2 z=100.015
+
+box foil3 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil3 z=100.025
+
+box foil4 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil4 z=100.035
+
+box foil5 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil5 z=100.045
+
+box foil6 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil6 z=100.055
+
+box foil7 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil7 z=100.065
+
+box foil8 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil8 z=100.075
+
+box foil9 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil9 z=100.085
+
+box foil10 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil10 z=100.095
+
+# Detectors
+
+virtualdetector w_Det1 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det1 z=100
+
+virtualdetector w_Det2 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det2 z=100.01
+
+virtualdetector w_Det3 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det3 z=100.02
+
+virtualdetector w_Det4 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det4 z=100.03
+
+virtualdetector w_Det5 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det5 z=100.04
+
+virtualdetector w_Det6 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det6 z=100.05
+
+virtualdetector w_Det7 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det7 z=100.06
+
+virtualdetector w_Det8 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det8 z=100.07
+
+virtualdetector w_Det9 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det9 z=100.08
+
+virtualdetector w_Det10 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det10 z=100.09

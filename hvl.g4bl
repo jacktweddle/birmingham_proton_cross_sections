@@ -1,0 +1,23 @@
+#	BirminghamSim.g4bl - Proton beam into target to test HVL
+
+# The "default" physics list is QGSP_BERT
+physics QGSP_BERT_HP
+
+# the beam is 10-36 MeV kinetic energy, the mass of a proton is 938.272 MeV/c^2
+# Momentum calculated from SR and has units of MeV/c
+param M=0 KE=1.0
+param P=$KE
+
+# a zero-emittance beam is unrealistic, but simple; it easily fits through
+# a 1 mm hole in the backward detector. It emanates from z=0.
+beam gaussian meanMomentum=$P nEvents=1000000 particle=gamma
+trackcuts keep=gamma killSecondaries keepPrimaries
+
+# Foils
+box foil height=10 width=10 length=25.2 material=Pb color=1,0,0
+place foil z=100
+
+# Detectors
+
+virtualdetector HVLDet height=10 width=10 length=0.1 color=0,1,0 format=ASCII
+place HVLDet z=113

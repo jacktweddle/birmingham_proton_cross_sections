@@ -1,0 +1,106 @@
+#	BirminghamSim.g4bl - 10-36 MeV proton beam into a W/Ta target
+
+# The "default" physics list is QGSP_BERT
+physics QGSP_BERT
+
+# the beam is 10-36 MeV kinetic energy, the mass of a proton is 938.272 MeV/c^2
+# Momentum calculated from SR and has units of MeV/c
+param M=938.272 KE=20.0
+param P=sqrt(($M+$KE)*($M+$KE)-$M*$M)
+
+# a zero-emittance beam is unrealistic, but simple; it easily fits through
+# a 1 mm hole in the backward detector. It emanates from z=0.
+beam gaussian meanMomentum=$P nEvents=1000000 particle=proton
+trackcuts keep=proton killSecondaries keepPrimaries
+
+# W FOILS
+box foil1 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil1 z=100.005
+
+box foil2 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil2 z=100.036
+
+box foil3 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil3 z=100.067
+
+box foil4 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil4 z=100.098
+
+box foil5 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil5 z=100.129
+
+box foil6 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil6 z=100.160
+
+box foil7 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil7 z=100.191
+
+box foil8 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil8 z=100.222
+
+box foil9 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil9 z=100.253
+
+box foil10 height=10 width=10 length=0.01 material=W color=1,0,0
+place foil10 z=100.284
+
+# The attenuator foils reduce the proton energies to create a more noticeable energy difference between the foils
+
+box atten1 height=10 width=10 length=0.021 material=Cu color=0,0,1
+place atten1 z=100.0205
+
+box atten2 height=10 width=10 length=0.021 material=Cu color=0,0,1
+place atten2 z=100.0515
+
+box atten3 height=10 width=10 length=0.021 material=Cu color=0,0,1
+place atten3 z=100.0825
+
+box atten4 height=10 width=10 length=0.021 material=Cu color=0,0,1
+place atten4 z=100.1135
+
+box atten5 height=10 width=10 length=0.021 material=Cu color=0,0,1
+place atten5 z=100.1445
+
+box atten6 height=10 width=10 length=0.021 material=Cu color=0,0,1
+place atten6 z=100.1755
+
+box atten7 height=10 width=10 length=0.021 material=Cu color=0,0,1
+place atten7 z=100.2065
+
+box atten8 height=10 width=10 length=0.021 material=Cu color=0,0,1
+place atten8 z=100.2375
+
+box atten9 height=10 width=10 length=0.021 material=Cu color=0,0,1
+place atten9 z=100.2685
+
+# The virtualdetectors detect the proton momenta and this can be used to calculate their energies
+
+virtualdetector w_Det1 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det1 z=100
+
+virtualdetector w_Det2 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det2 z=100.031
+
+virtualdetector w_Det3 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det3 z=100.062
+
+virtualdetector w_Det4 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det4 z=100.093
+
+virtualdetector w_Det5 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det5 z=100.124
+
+virtualdetector w_Det6 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det6 z=100.155
+
+virtualdetector w_Det7 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det7 z=100.186
+
+virtualdetector w_Det8 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det8 z=100.217
+
+virtualdetector w_Det9 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det9 z=100.248
+
+virtualdetector w_Det10 height=10 width=10 length=0.0001 color=1,1,0 format=ASCII
+place w_Det10 z=100.279

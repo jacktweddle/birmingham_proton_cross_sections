@@ -1,0 +1,28 @@
+#	BirminghamSim.g4bl - 10-36 MeV proton beam into a W/Ta target
+
+# The "default" physics list is QGSP_BERT
+physics QGSP_BERT_HP
+
+# the beam is 10-36 MeV kinetic energy, the mass of a proton is 938.272 MeV/c^2
+# Momentum calculated from SR and has units of MeV/c
+param M=0 KE=0.01
+param P=$KE
+
+# Define an isotropic source of photons
+isotropicsource meanP=$P nEvents=1000000 particle=gamma
+trackcuts keep=gamma killSecondaries keepPrimaries
+
+# Foils
+box foil height=10 width=10 length=0.01 material=W color=1,0,0
+place foil z=0
+
+# Detectors
+
+virtualdetector DetForward radius=80 length=0.0001 color=0,1,0 format=ASCII
+place DetForward z=0.02255
+
+virtualdetector DetBackward radius=80 length=0.0001 color=0,1,0 format=ASCII
+place DetBackward z=-0.02255
+
+virtualdetector DetSideways innerRadius=80 radius=80.1 length=0.045 color=0,0,1 format=ASCII
+place DetSideways z=0
